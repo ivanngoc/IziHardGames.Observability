@@ -1,0 +1,19 @@
+services:
+  #http://localhost:9090/query - gui
+  prometheus:
+    image: prom/prometheus:latest 
+    container_name: prometheus
+    volumes:
+      # - "C:/Users/ivan/Documents/.docker-compose/OpenTelemetryStack/files/collector/prometheus.yml:/etc/prometheus/prometheus.yml"
+      - "${PWD}/files/collector/prometheus.yml:/etc/prometheus/prometheus.yml"
+    command:
+      - '--enable-feature=otlp-write-receiver'
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "9090:9090"
+    networks:
+      - monitoring
+
+networks:
+ monitoring:
+  external: true

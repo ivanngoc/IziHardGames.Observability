@@ -1,0 +1,95 @@
+services:
+  opensearch:
+    image: opensearchproject/opensearch:latest
+    container_name: opensearch
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "plugins.security.disabled=true"
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=StrongPassword12345!!
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9200:9200
+    networks:
+      - monitoring
+
+  data-prepper:
+    image: opensearchproject/data-prepper:latest
+    container_name: data-prepper
+    ports:
+      - "4900:4900"
+    volumes:
+      - ./files/opensearch/pipelines.yaml:/usr/share/data-prepper/pipelines/pipelines.yaml
+      - ./files/opensearch/data-prepper-config.yaml:/usr/share/data-prepper/config/data-prepper-config.yaml
+    depends_on:
+      - opensearch
+
+  opensearch-dashboards:
+    image: opensearchproject/opensearch-dashboards:latest
+    container_name: opensearch-dashboards
+    environment:
+      - "OPENSEARCH_HOSTS=[\"http://opensearch:9200\"]"
+      - "DISABLE_SECURITY_DASHBOARDS_PLUGIN=true"
+    ports:
+      - 5601:5601
+    depends_on:
+      - opensearch
+    networks:
+      - monitoring
+
+   #http://localhost:9090/query
+  prometheus:
+    image: prom/prometheus:latest 
+    container_name: prometheus
+    # volumes:
+      # - ./prometheus:/etc/prometheus/
+    command:
+      - '--enable-feature=otlp-write-receiver'
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "9090:9090"
+    networks:
+      - monitoring
+
+  #http://localhost:3010/login
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    ports:
+      - "3010:3000"
+    networks:
+      - monitoring
+    depends_on:
+      - prometheus
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    container_name: otel-collector
+    volumes:
+      - ./files/collector/otel-collector-config.yml:/etc/otel-collector-config.yml
+    command: ["--config", "/etc/otel-collector-config.yml"]
+    environment:
+      - OTELCOL_LOG_LEVEL=debug
+    ports:
+      - "9464:9464"   # Port for Prometheus to scrape
+      - "4317:4317"   # OTLP gRPC receiver
+      - "4318:4318"   # OTLP HTTP receiver
+    networks:
+      - monitoring
+
+  zipkin_service:
+    image: openzipkin/zipkin
+    restart: always
+    container_name: zipkin
+    ports:
+        - "9411:9411"
+
+networks:
+  monitoring:
+    # driver: bridge

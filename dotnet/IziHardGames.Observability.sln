@@ -1,0 +1,89 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F09E2456-DED1-4862-880C-24547B1132D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{9D83CE21-747D-4E61-8F88-9E2BBCF3B2AA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "playgrounds", "playgrounds", "{34285702-DFD3-4BDB-A47A-71C5474E21EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solution Items", "{69FABF49-333F-4761-B748-FB808AFD9921}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Packages.props = Directory.Packages.props
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi0", "examples\WebApi0\WebApi0.csproj", "{96562263-34F1-4BD2-B488-60EC460DC8E6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedConstants", "examples\SharedConstants\SharedConstants.csproj", "{677ED9C9-3D8D-4E07-ABF8-A5000A77EC7B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IziTracings", "src\IziTracings\IziTracings.csproj", "{841E47E6-C349-4FF6-B5B5-14436250EFB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IziMetrics", "src\IziMetrics\IziMetrics.csproj", "{1B23DE2A-C030-48D7-BB44-B765C90D95D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dist", "dist", "{23EF501A-DFB8-4D92-8619-7D1610519536}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{FBBF952C-0F49-4A5C-9D14-62FC73AD9A68}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.opensearch.yml = docker-compose.opensearch.yml
+		docker-compose.zipkin.yml = docker-compose.zipkin.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IziLogging", "src\IziLogging\IziLogging.csproj", "{322CE3F3-FB8C-4C9E-B97C-99D6DFC0E9AC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "configs", "configs", "{722F56AF-D006-4445-9D87-B05549C96A94}"
+	ProjectSection(SolutionItems) = preProject
+		files\collector\otel-collector-config.yml = files\collector\otel-collector-config.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IziHardGames.Observability.Contracts", "src\IziHardGames.Observability.Contracts\IziHardGames.Observability.Contracts.csproj", "{192B8DB0-C183-4F00-977E-9062AAE82FE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96562263-34F1-4BD2-B488-60EC460DC8E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96562263-34F1-4BD2-B488-60EC460DC8E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96562263-34F1-4BD2-B488-60EC460DC8E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96562263-34F1-4BD2-B488-60EC460DC8E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{677ED9C9-3D8D-4E07-ABF8-A5000A77EC7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{677ED9C9-3D8D-4E07-ABF8-A5000A77EC7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{677ED9C9-3D8D-4E07-ABF8-A5000A77EC7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{677ED9C9-3D8D-4E07-ABF8-A5000A77EC7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{841E47E6-C349-4FF6-B5B5-14436250EFB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{841E47E6-C349-4FF6-B5B5-14436250EFB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{841E47E6-C349-4FF6-B5B5-14436250EFB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{841E47E6-C349-4FF6-B5B5-14436250EFB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B23DE2A-C030-48D7-BB44-B765C90D95D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B23DE2A-C030-48D7-BB44-B765C90D95D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B23DE2A-C030-48D7-BB44-B765C90D95D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B23DE2A-C030-48D7-BB44-B765C90D95D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{322CE3F3-FB8C-4C9E-B97C-99D6DFC0E9AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{322CE3F3-FB8C-4C9E-B97C-99D6DFC0E9AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{322CE3F3-FB8C-4C9E-B97C-99D6DFC0E9AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{322CE3F3-FB8C-4C9E-B97C-99D6DFC0E9AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{192B8DB0-C183-4F00-977E-9062AAE82FE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{192B8DB0-C183-4F00-977E-9062AAE82FE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{192B8DB0-C183-4F00-977E-9062AAE82FE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{192B8DB0-C183-4F00-977E-9062AAE82FE0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{96562263-34F1-4BD2-B488-60EC460DC8E6} = {9D83CE21-747D-4E61-8F88-9E2BBCF3B2AA}
+		{677ED9C9-3D8D-4E07-ABF8-A5000A77EC7B} = {34285702-DFD3-4BDB-A47A-71C5474E21EF}
+		{841E47E6-C349-4FF6-B5B5-14436250EFB3} = {F09E2456-DED1-4862-880C-24547B1132D7}
+		{1B23DE2A-C030-48D7-BB44-B765C90D95D2} = {F09E2456-DED1-4862-880C-24547B1132D7}
+		{FBBF952C-0F49-4A5C-9D14-62FC73AD9A68} = {69FABF49-333F-4761-B748-FB808AFD9921}
+		{322CE3F3-FB8C-4C9E-B97C-99D6DFC0E9AC} = {F09E2456-DED1-4862-880C-24547B1132D7}
+		{722F56AF-D006-4445-9D87-B05549C96A94} = {69FABF49-333F-4761-B748-FB808AFD9921}
+		{192B8DB0-C183-4F00-977E-9062AAE82FE0} = {F09E2456-DED1-4862-880C-24547B1132D7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EF8E4E75-7BCD-4116-8F84-0014467ACEDC}
+	EndGlobalSection
+EndGlobal

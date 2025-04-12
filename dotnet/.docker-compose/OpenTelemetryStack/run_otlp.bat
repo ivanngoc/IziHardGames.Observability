@@ -1,0 +1,1 @@
+docker compose -f docker-compose.otlp.yml up -d --build

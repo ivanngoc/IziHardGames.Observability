@@ -1,0 +1,19 @@
+services:
+  otel-collector:
+    image: otel/opentelemetry-collector:latest
+    container_name: otel-collector
+    volumes:
+      # - C:/Users/ivan/Documents/.docker-compose/OpenTelemetryStack/files/collector/otel-collector-config.yml:/etc/otel-collector-config.yml
+      - "${PWD}/files/collector/otel-collector-config.yml:/etc/otel-collector-config.yml"
+      # ${PWD} - текущий абсолютный путь
+    command: ["--config", "/etc/otel-collector-config.yml"]
+    ports:
+      - "9464:9464"   # Port for Prometheus to scrape
+      - "4317:4317"   # OTLP gRPC receiver
+      - "4318:4318"   # OTLP HTTP receiver
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    external: true

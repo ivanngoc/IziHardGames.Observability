@@ -1,0 +1,15 @@
+services:
+  #http://localhost:3010/login - gui
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    ports:
+      - "3010:3000"
+    networks:
+      - monitoring
+      
+networks:
+  monitoring:
+    external: true

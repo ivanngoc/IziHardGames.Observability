@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ProjectGuid>9c665654-6eee-40ab-aa13-42bdffb37c21</ProjectGuid>
+    <Author>Tran Ngoc Anh</Author>
+    <Company>IziHardGames</Company>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+    <PackageReference Include="Scalar.AspNetCore" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" />
+    <PackageReference Include="OpenTelemetry" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Process" />
+    <PackageReference Include="Npgsql.OpenTelemetry" />
+    <PackageReference Include="OpenTelemetry.Exporter.Console" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
+    <PackageReference Include="OpenTelemetry.Exporter.Prometheus.AspNetCore" />
+    <PackageReference Include="OpenTelemetry.Exporter.Zipkin" />
+
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\IziLogging\IziLogging.csproj" />
+    <ProjectReference Include="..\SharedConstants\SharedConstants.csproj">
+      <Project>bf3162cb-692f-4dea-87c4-4618d35d78a0</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\IziMetrics\IziMetrics.csproj">
+      <Project>35574e9f-3f15-459e-837c-ebfa1245dd2a</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\IziTracings\IziTracings.csproj">
+      <Project>59df4cff-035e-4548-baad-8b4a7eac4fb4</Project>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

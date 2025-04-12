@@ -1,0 +1,6 @@
+{
+    "yaml.schemas": {
+        "file:///c%3A/Users/ivan/.vscode/extensions/atlassian.atlascode-3.0.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml",
+        "https://json.schemastore.org/prometheus.json": "file:///c%3A/Users/ivan/Documents/%2Cdocker-compose/OpenTelemetryStack/files/collector/prometheus.yml"
+    }
+}

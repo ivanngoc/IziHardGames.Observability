@@ -1,0 +1,54 @@
+receivers:
+  otlp:
+    protocols:
+      grpc: 
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+processors:
+  batch:
+
+exporters:
+  debug:
+    verbosity: detailed  # Optional: "basic" or "detailed"
+
+  zipkin:
+    # endpoint: "http://zipkin:9411/api/v2/spans"
+    endpoint: "http://host.docker.internal:9411/api/v2/spans"
+
+  elasticsearch/logs:
+    # endpoints: ["http://opensearch:9200"]
+    endpoints: ["http://host.docker.internal:9200"]
+    logs_index: "otel-logs"
+    traces_index: "otel-traces"
+    tls:
+      insecure: true
+  
+  # opensearch:
+  #   endpoint: "http://opensearch:9200"
+
+  # otlp/data-prepper:
+  #   endpoint: localhost:9200
+  #   tls:
+  #     insecure: true
+
+  prometheusremotewrite:
+    endpoint: "http://prometheus:9090/api/v1/write"
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [zipkin, debug]
+
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [prometheusremotewrite, debug]
+
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [elasticsearch/logs, debug]
