@@ -7,6 +7,9 @@ services:
       - bootstrap.memory_lock=true
       - "plugins.security.disabled=true"
       - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "opensearch.experimental.feature.telemetry.enabled=true"
+      # - OPENSEARCH_JAVA_OPTS="-Dopensearch.experimental.feature.telemetry.enabled=true"
+      # - "OPENSEARCH_JAVA_OPTS=opensearch.experimental.feature.telemetry.enabled=true"
       - OPENSEARCH_INITIAL_ADMIN_PASSWORD=StrongPassword12345!!
     ulimits:
       memlock:
@@ -22,8 +25,10 @@ services:
     container_name: data-prepper
     ports:
       - "4900:4900"
+      # OTLP gRPC
+      - "21890:21890"
     volumes:
-      - ./files/opensearch/pipelines.yaml:/usr/share/data-prepper/pipelines/pipelines.yaml
+      - ./files/opensearch/pipelines/pipeline.yaml:/usr/share/data-prepper/pipelines/pipeline.yaml
       - ./files/opensearch/data-prepper-config.yaml:/usr/share/data-prepper/config/data-prepper-config.yaml
     depends_on:
       - opensearch

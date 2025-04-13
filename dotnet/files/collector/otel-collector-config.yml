@@ -1,7 +1,7 @@
 receivers:
   otlp:
     protocols:
-      grpc: 
+      grpc:
         endpoint: 0.0.0.0:4317
       http:
         endpoint: 0.0.0.0:4318
@@ -11,22 +11,33 @@ processors:
 
 exporters:
   debug:
-    verbosity: detailed  # Optional: "basic" or "detailed"
+    verbosity: detailed # Optional: "basic" or "detailed"
 
   zipkin:
     # endpoint: "http://zipkin:9411/api/v2/spans"
     endpoint: "http://host.docker.internal:9411/api/v2/spans"
 
-  elasticsearch/logs:
+  elasticsearch:
     # endpoints: ["http://opensearch:9200"]
-    endpoints: ["http://host.docker.internal:9200"]
-    logs_index: "otel-logs"
-    traces_index: "otel-traces"
+    # endpoints: ["http://host.docker.internal:9200"]
+    endpoint: http://host.docker.internal:9200
     tls:
       insecure: true
-  
-  # opensearch:
-  #   endpoint: "http://opensearch:9200"
+
+  # opensearch is unmaintained 2025/04/13
+  opensearch/log:
+    # logs_index: "otel-v1-apm-span-{% raw %}{{ .yyyy.MM.dd }}{% endraw %}"
+    http:
+      endpoint: http://host.docker.internal:9200
+      tls:
+        insecure: true
+
+  # opensearch/trace:
+  #   # logs_index: "otel-traces-{% raw %}{{ .yyyy.MM.dd }}{% endraw %}"
+  #   http:
+  #     endpoint: http://host.docker.internal:9200
+  #     tls:
+  #       insecure: true
 
   # otlp/data-prepper:
   #   endpoint: localhost:9200
@@ -36,19 +47,27 @@ exporters:
   prometheusremotewrite:
     endpoint: "http://prometheus:9090/api/v1/write"
 
+  otlp/data-prepper:
+    endpoint: "http://host.docker.internal:21890"
+    tls:
+      insecure: true
+
 service:
   pipelines:
     traces:
       receivers: [otlp]
       processors: [batch]
-      exporters: [zipkin, debug]
+      # exporters: [zipkin, debug, opensearch/trace]
+      exporters: [zipkin, debug, otlp/data-prepper]
 
     metrics:
       receivers: [otlp]
       processors: [batch]
-      exporters: [prometheusremotewrite, debug]
+      # exporters: [prometheusremotewrite, debug]
+      exporters: [debug]
 
     logs:
       receivers: [otlp]
       processors: [batch]
-      exporters: [elasticsearch/logs, debug]
+      # exporters: [opensearch/log, debug]
+      exporters: [opensearch/log, debug]
