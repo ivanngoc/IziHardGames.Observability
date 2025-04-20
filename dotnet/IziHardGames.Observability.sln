@@ -35,6 +35,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "configs", "configs", "{722F56AF-D006-4445-9D87-B05549C96A94}"
 	ProjectSection(SolutionItems) = preProject
 		files\collector\otel-collector-config.yml = files\collector\otel-collector-config.yml
+		files\opensearch\pipelines\pipeline.yaml = files\opensearch\pipelines\pipeline.yaml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IziHardGames.Observability.Contracts", "src\IziHardGames.Observability.Contracts\IziHardGames.Observability.Contracts.csproj", "{192B8DB0-C183-4F00-977E-9062AAE82FE0}"

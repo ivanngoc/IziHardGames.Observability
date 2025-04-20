@@ -35,7 +35,7 @@ namespace IziHardGames.Observability.Logging
             builder.WithLogging(log =>
             {
                 log.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(config.ServiceName))
-                   .AddOtlpExporter();
+                .AddOtlpExporter();
                 //.AddOtlpExporter(opt =>
                 //{
                 //    opt.Endpoint = new Uri("http://localhost:4317");

@@ -47,7 +47,7 @@ namespace WebApi0
             var otel = builder.Services.AddOpenTelemetry()
                      .AddMetricsWithSpecificOfIziHardGames(config)
                      .AddLoggingWithOpenTelemetry(config)
-                     .AddMetricsWithSpecificOfIziHardGames(config, new OtlpParams()
+                     .AddTracesWithSpecificOfIziHardGames(config, new OtlpParams()
                      {
                          HostName = "localhost",
                          ServiceName = "IziTestOtlpTracingsService",

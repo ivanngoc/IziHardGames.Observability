@@ -17,20 +17,20 @@ exporters:
     # endpoint: "http://zipkin:9411/api/v2/spans"
     endpoint: "http://host.docker.internal:9411/api/v2/spans"
 
-  elasticsearch:
-    # endpoints: ["http://opensearch:9200"]
-    # endpoints: ["http://host.docker.internal:9200"]
-    endpoint: http://host.docker.internal:9200
-    tls:
-      insecure: true
+  # elasticsearch:
+  #   # endpoints: ["http://opensearch:9200"]
+  #   # endpoints: ["http://host.docker.internal:9200"]
+  #   endpoint: http://host.docker.internal:9200
+  #   tls:
+  #     insecure: true
 
   # opensearch is unmaintained 2025/04/13
-  opensearch/log:
-    # logs_index: "otel-v1-apm-span-{% raw %}{{ .yyyy.MM.dd }}{% endraw %}"
-    http:
-      endpoint: http://host.docker.internal:9200
-      tls:
-        insecure: true
+  # opensearch/log:
+  #   # logs_index: "otel-v1-apm-span-{% raw %}{{ .yyyy.MM.dd }}{% endraw %}"
+  #   http:
+  #     endpoint: http://host.docker.internal:9200
+  #     tls:
+  #       insecure: true
 
   # opensearch/trace:
   #   # logs_index: "otel-traces-{% raw %}{{ .yyyy.MM.dd }}{% endraw %}"
@@ -47,8 +47,32 @@ exporters:
   prometheusremotewrite:
     endpoint: "http://prometheus:9090/api/v1/write"
 
-  otlp/data-prepper:
+  # otlp/data-prepper:
+  #   endpoint: "http://host.docker.internal:21890"
+  #   tls:
+  #     insecure: true
+
+  otlp/1:
+    endpoint: "http://host.docker.internal:21891"
+    tls:
+      insecure: true
+  otlp/2:
+    endpoint: "http://host.docker.internal:21892"
+    tls:
+      insecure: true
+
+  otlp/data-prepper-traces:
     endpoint: "http://host.docker.internal:21890"
+    tls:
+      insecure: true
+
+  otlp/data-prepper-logs:
+    endpoint: "http://host.docker.internal:21892"
+    tls:
+      insecure: true
+
+  otlp/data-prepper-metrics:
+    endpoint: "http://host.docker.internal:21891"
     tls:
       insecure: true
 
@@ -58,16 +82,24 @@ service:
       receivers: [otlp]
       processors: [batch]
       # exporters: [zipkin, debug, opensearch/trace]
-      exporters: [zipkin, debug, otlp/data-prepper]
+      exporters: [zipkin, debug, otlp/data-prepper-traces]
+      # exporters: [zipkin, debug, otlp/data-prepper]
 
     metrics:
       receivers: [otlp]
       processors: [batch]
       # exporters: [prometheusremotewrite, debug]
-      exporters: [debug]
+      # exporters: [debug, otlp/data-prepper-metrics]
+      # exporters: [debug, otlp/data-prepper-metrics, otlp/1]
+      exporters: [debug, otlp/1]
+      # exporters: [debug, otlp/data-prepper]
 
     logs:
       receivers: [otlp]
       processors: [batch]
       # exporters: [opensearch/log, debug]
-      exporters: [opensearch/log, debug]
+      # exporters: [opensearch/log, debug, otlp/data-prepper]
+      # exporters: [debug, otlp/data-prepper-logs, otlp/2]
+      exporters: [debug, otlp/2]
+      # exporters: [debug, otlp/data-prepper-logs]
+      # exporters: [debug, otlp/data-prepper]

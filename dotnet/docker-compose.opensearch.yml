@@ -27,6 +27,10 @@ services:
       - "4900:4900"
       # OTLP gRPC
       - "21890:21890"
+      # The port that the OpenTelemtry metrics source runs on. Default value is 21891. https://docs.opensearch.org/docs/latest/data-prepper/pipelines/configuration/sources/otel-metrics-source/
+      - "21891:21891"
+      # Represents the port that the otel_logs_source source is running on. Default value is 21892. https://docs.opensearch.org/docs/latest/data-prepper/pipelines/configuration/sources/otel-logs-source/
+      - "21892:21892"
     volumes:
       - ./files/opensearch/pipelines/pipeline.yaml:/usr/share/data-prepper/pipelines/pipeline.yaml
       - ./files/opensearch/data-prepper-config.yaml:/usr/share/data-prepper/config/data-prepper-config.yaml
