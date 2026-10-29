@@ -1,0 +1,55 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>IziHardGames.Observability</id>
+    <version>0.0.2</version>
+    <authors>Tran Ngoc Anh</authors>
+    <description>A brief description of your package.</description>
+
+    <tags>tag1 tag2 tag3</tags>
+    <license type="expression">MIT</license>
+    <releaseNotes>Initial release.</releaseNotes>
+    <readme>README.md</readme>
+    <copyright>Copyright © 2025 IziHardGames</copyright>
+
+    <dependencies>
+      <group targetFramework="net8.0">
+        <dependency id="OpenTelemetry" version="1.9.0" />
+        <dependency id="OpenTelemetry.Extensions.Hosting" version="1.9.0" />
+        <dependency id="OpenTelemetry.Instrumentation.AspNetCore" version="1.9.0" />
+        <dependency id="OpenTelemetry.Instrumentation.EntityFrameworkCore" version="1.0.0-beta.12" />
+        <dependency id="OpenTelemetry.Instrumentation.Http" version="1.9.0" />
+        <dependency id="OpenTelemetry.Instrumentation.Runtime" version="1.9.0" />
+        <dependency id="OpenTelemetry.Instrumentation.Process" version="0.5.0-beta.6" />
+        <dependency id="OpenTelemetry.Exporter.Console" version="1.9.0" />
+        <dependency id="OpenTelemetry.Exporter.OpenTelemetryProtocol" version="1.9.0" />
+        <dependency id="OpenTelemetry.Exporter.Prometheus.AspNetCore" version="1.9.0-beta.2" />
+        <dependency id="OpenTelemetry.Exporter.Zipkin" version="1.9.0" />
+        <dependency id="Npgsql.OpenTelemetry" version="8.0.3" />
+      </group>
+      <group targetFramework="netstandard2.1">
+        <!-- Add dependencies specific to .NET 8.0 here -->
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\net8.0\IziLogging.dll" target="lib\net8.0" />
+    <file src="bin\Release\net8.0\IziLogging.pdb" target="lib\net8.0" />
+    <file src="bin\Release\net8.0\IziLogging.xml" target="lib\net8.0" />
+
+    <file src="bin\Release\net8.0\IziMetrics.dll" target="lib\net8.0" />
+    <file src="bin\Release\net8.0\IziMetrics.pdb" target="lib\net8.0" />
+    <file src="bin\Release\net8.0\IziMetrics.xml" target="lib\net8.0" />
+
+    <file src="bin\Release\net8.0\IziTracings.dll" target="lib\net8.0" />
+    <file src="bin\Release\net8.0\IziTracings.pdb" target="lib\net8.0" />
+    <file src="bin\Release\net8.0\IziTracings.xml" target="lib\net8.0" />
+
+    <file src="bin\Release\net8.0\IziHardGames.Observability.Contracts.dll" target="lib\net8.0" />
+    <file src="bin\Release\net8.0\IziHardGames.Observability.Contracts.pdb" target="lib\net8.0" />
+    <file src="bin\Release\net8.0\IziHardGames.Observability.Contracts.xml" target="lib\net8.0" />
+
+    <file src="LICENSE" />
+    <file src="README.md" />
+  </files>
+</package>

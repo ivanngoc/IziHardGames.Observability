@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <ProjectGuid>2da40e97-8b54-49d2-995a-26e35024ebf4</ProjectGuid>
+    <RootNamespace>IziHardGames.Observability</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <PackageId>IziHardGames.Observability</PackageId>
+    <PackageDescription>OpenTelemetry</PackageDescription>
+    <PackageTags>OpenTelemetry;Logs;Traces;Metrics</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.3</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\IziHardGames.Observability.Contracts\IziHardGames.Observability.Contracts.csproj" />
+    <ProjectReference Include="..\..\src\IziLogging\IziLogging.csproj" />
+    <ProjectReference Include="..\..\src\IziMetrics\IziMetrics.csproj" />
+    <ProjectReference Include="..\..\src\IziTracings\IziTracings.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NuGetizer">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

@@ -25,6 +25,6 @@ namespace WebApi0.BackgroundServices
     {
         public int Id { get; set; }
         public double ValueAsDouble { get; set; }
-        public string ValueAsString { get; set; }
+        public string? ValueAsString { get; set; }
     }
 }

@@ -35,18 +35,24 @@ namespace IziHardGames.Observability.Logging
             builder.WithLogging(log =>
             {
                 log.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(config.ServiceName))
-                .AddOtlpExporter();
-                //.AddOtlpExporter(opt =>
-                //{
-                //    opt.Endpoint = new Uri("http://localhost:4317");
-                //    opt.Protocol = OtlpExportProtocol.Grpc;
-                //    //opt.HttpClientFactory = () => new HttpClient(new HttpClientHandler
-                //    //{
-                //    //    ServerCertificateCustomValidationCallback = (_, _, _, _) => true // Disable TLS validation
-                //    //});
-                //});
+                //.AddOtlpExporter();
+                .AddOtlpExporter(opt =>
+                {
+                    opt.Endpoint = new Uri(GetOtlcEndpoint());
+                    opt.Protocol = OtlpExportProtocol.Grpc;
+                    //opt.HttpClientFactory = () => new HttpClient(new HttpClientHandler
+                    //{
+                    //    ServerCertificateCustomValidationCallback = (_, _, _, _) => true // Disable TLS validation
+                    //});
+                });
             });
             return builder;
+        }
+
+        private static string GetOtlcEndpoint()
+        {
+            var uri = Environment.GetEnvironmentVariable("IZHG_OTLP_COLLECTOR") ?? "http://localhost:4317";
+            return uri;
         }
     }
 }

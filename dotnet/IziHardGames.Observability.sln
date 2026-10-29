@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31903.59
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11222.15 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F09E2456-DED1-4862-880C-24547B1132D7}"
 EndProject
@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solution Items", "{69FABF49-333F-4761-B748-FB808AFD9921}"
 	ProjectSection(SolutionItems) = preProject
 		Directory.Packages.props = Directory.Packages.props
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi0", "examples\WebApi0\WebApi0.csproj", "{96562263-34F1-4BD2-B488-60EC460DC8E6}"
@@ -39,6 +40,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "configs", "configs", "{722F
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IziHardGames.Observability.Contracts", "src\IziHardGames.Observability.Contracts\IziHardGames.Observability.Contracts.csproj", "{192B8DB0-C183-4F00-977E-9062AAE82FE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IziHardGames.Observability", "dist\IziHardGames.Observability.Nuget\IziHardGames.Observability.csproj", "{2A2527FC-585B-4DDA-BBE2-DCB32859BA69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,6 +73,10 @@ Global
 		{192B8DB0-C183-4F00-977E-9062AAE82FE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{192B8DB0-C183-4F00-977E-9062AAE82FE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{192B8DB0-C183-4F00-977E-9062AAE82FE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A2527FC-585B-4DDA-BBE2-DCB32859BA69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A2527FC-585B-4DDA-BBE2-DCB32859BA69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A2527FC-585B-4DDA-BBE2-DCB32859BA69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A2527FC-585B-4DDA-BBE2-DCB32859BA69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,6 +90,7 @@ Global
 		{322CE3F3-FB8C-4C9E-B97C-99D6DFC0E9AC} = {F09E2456-DED1-4862-880C-24547B1132D7}
 		{722F56AF-D006-4445-9D87-B05549C96A94} = {69FABF49-333F-4761-B748-FB808AFD9921}
 		{192B8DB0-C183-4F00-977E-9062AAE82FE0} = {F09E2456-DED1-4862-880C-24547B1132D7}
+		{2A2527FC-585B-4DDA-BBE2-DCB32859BA69} = {23EF501A-DFB8-4D92-8619-7D1610519536}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EF8E4E75-7BCD-4116-8F84-0014467ACEDC}

@@ -17,20 +17,20 @@ exporters:
     # endpoint: "http://zipkin:9411/api/v2/spans"
     endpoint: "http://host.docker.internal:9411/api/v2/spans"
 
-  # elasticsearch:
-  #   # endpoints: ["http://opensearch:9200"]
-  #   # endpoints: ["http://host.docker.internal:9200"]
-  #   endpoint: http://host.docker.internal:9200
-  #   tls:
-  #     insecure: true
+  # https://github.com/binjip978/opentelemetry-collector-contrib/tree/main/exporter/opensearchexporter#example
+  elasticsearch:
+    endpoints: 
+     - http://host.docker.internal:9200
+    tls:
+      insecure: true
 
   # opensearch is unmaintained 2025/04/13
-  # opensearch/log:
-  #   # logs_index: "otel-v1-apm-span-{% raw %}{{ .yyyy.MM.dd }}{% endraw %}"
-  #   http:
-  #     endpoint: http://host.docker.internal:9200
-  #     tls:
-  #       insecure: true
+  opensearch/log:
+    # logs_index: "otel-v1-apm-span-{% raw %}{{ .yyyy.MM.dd }}{% endraw %}"
+    http:
+      endpoint: http://host.docker.internal:9200
+      tls:
+        insecure: true
 
   # opensearch/trace:
   #   # logs_index: "otel-traces-{% raw %}{{ .yyyy.MM.dd }}{% endraw %}"
@@ -60,6 +60,17 @@ exporters:
     endpoint: "http://host.docker.internal:21892"
     tls:
       insecure: true
+
+  # not working for logs
+  # otlp/3:
+  #   endpoint: "http://host.docker.internal:9200"
+  #   tls:
+  #     insecure: true
+
+  otlp/data-prepper:
+    endpoint: "http://host.docker.internal:21890"
+    tls:
+     insecure: true
 
   otlp/data-prepper-traces:
     endpoint: "http://host.docker.internal:21890"
@@ -100,6 +111,8 @@ service:
       # exporters: [opensearch/log, debug]
       # exporters: [opensearch/log, debug, otlp/data-prepper]
       # exporters: [debug, otlp/data-prepper-logs, otlp/2]
-      exporters: [debug, otlp/2]
+      # exporters: [debug, otlp/data-prepper-logs] #not works
+      # exporters: [debug, otlp/data-prepper] #not works
       # exporters: [debug, otlp/data-prepper-logs]
       # exporters: [debug, otlp/data-prepper]
+      exporters: [debug, opensearch/log]
