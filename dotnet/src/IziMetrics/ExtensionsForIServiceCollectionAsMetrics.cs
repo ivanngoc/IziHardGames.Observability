@@ -1,4 +1,5 @@
-﻿using IziHardGames.Observability.Contracts;
+﻿using System.Runtime.InteropServices;
+using IziHardGames.Observability.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 using OpenTelemetry;
 using OpenTelemetry.Metrics;
@@ -22,12 +23,19 @@ namespace IziMetrics
         /// </example>
         public static OpenTelemetryBuilder AddMetricsWithSpecificOfIziHardGames(this OpenTelemetryBuilder builder, ObservabilityConfig config)
         {
+            var attts = new Dictionary<string, object>
+            {
+                ["host.machineName"] = Environment.MachineName,
+                ["os.description"] = RuntimeInformation.OSDescription,
+            };
+
             builder.WithMetrics(metrics =>
             {
                 metrics
-                    .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(config.ServiceName))
+                    .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(config.ServiceName).AddAttributes(attts))
                     .AddMeter("Microsoft.AspNetCore.Hosting")     // Metrics provides by ASP.NET Core in .NET 8
                     .AddMeter("Microsoft.AspNetCore.Server.Kestrel")
+                    .ConfigureResource(x => x.AddHostDetector().AddOperatingSystemDetector())
                     .AddAspNetCoreInstrumentation()
                     .AddHttpClientInstrumentation()
                     .AddProcessInstrumentation()

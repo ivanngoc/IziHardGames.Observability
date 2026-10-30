@@ -36,6 +36,7 @@ namespace IziHardGames.Observability.Logging
             {
                 log.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(config.ServiceName))
                 //.AddOtlpExporter();
+                .ConfigureResource(x=>x.AddHostDetector().AddOperatingSystemDetector())
                 .AddOtlpExporter(opt =>
                 {
                     opt.Endpoint = new Uri(GetOtlcEndpoint());

@@ -25,6 +25,8 @@
     <PackageReference Include="OpenTelemetry.Exporter.Prometheus.AspNetCore" />
     <PackageReference Include="OpenTelemetry.Exporter.Zipkin" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Cassandra" />
+    <PackageReference Include="OpenTelemetry.Resources.Host" />
+    <PackageReference Include="OpenTelemetry.Resources.OperatingSystem" />
   </ItemGroup>
 
   <ItemGroup>

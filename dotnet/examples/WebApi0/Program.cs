@@ -42,7 +42,7 @@ namespace WebApi0
 
             //var otel = builder.Services.AddOpenTelemetry();
             var env = Environment.GetEnvironmentVariable("OTEL_EXPORTER_OTLP_ENDPOINT");
-            var config = new ObservabilityConfig() { ServiceName = "Example-otel" };
+            var config = new ObservabilityConfig() { ServiceName = "iziHardGames.Observability.ExampleWebAPI" };
             //var otel = builder.Services.AddOpenTelemetry().AddLoggingWithOpenTelemetry(config);
             var otel = builder.Services.AddOpenTelemetry()
                      .AddMetricsWithSpecificOfIziHardGames(config)
